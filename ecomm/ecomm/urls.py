@@ -19,6 +19,8 @@ from django.urls import path
 from products.views import *
 from django.conf import settings
 from django.conf.urls.static import static
+from django.conf.urls import url
+from django.views.static import serve
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -29,6 +31,8 @@ urlpatterns = [
     path('register/', register, name='register'),
     path('login/', loginview, name='login'),
     path('logout/', logoutpage, name='logout'),
+    url(r'^media/(?P<path>.*)$', serve,{'document_root': settings.MeDIA_ROOT}),
+    url(r'^static/(?P<path>.*)$', serve,{'document_root': settings.MeDIA_ROOT})
 ]
 
 if settings.DEBUG:
